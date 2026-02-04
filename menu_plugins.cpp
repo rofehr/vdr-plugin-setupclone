@@ -11,12 +11,18 @@ public:
   cPluginMenuItem(cPlugin *Plugin)
   : cOsdItem(Plugin->MainMenuEntry()), plugin(Plugin) {}
 
-  eOSState ProcessKey(eKeys Key) override {
-    if (Key == kOk)
-      return plugin->MainMenuAction();
-    return osContinue;
+  eOSState ProcessKey(eKeys Key) override
+  {
+    if (Key == kOk) {
+      cOsdObject *o = plugin->MainMenuAction();
+      if (o)
+        return AddSubMenu(o);
+      return osContinue;
+    }
+    return cOsdItem::ProcessKey(Key);
   }
 };
+
 
 cOsdMenuSortedPlugins::cOsdMenuSortedPlugins()
 : cOsdMenu(tr("Plugins"))
