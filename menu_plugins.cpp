@@ -17,15 +17,16 @@ public:
 cOsdMenuSortedPlugins::cOsdMenuSortedPlugins()
 : cOsdMenu(tr("Plugins"))
 {
+  // 1. Sortierte Plugins
   for (const auto &name : PluginOrder) {
     cPlugin *p = cPluginManager::GetPlugin(name.c_str());
     if (p && p->MainMenuEntry())
       Add(new cPluginMenuItem(p));
   }
 
-  for (cPlugin *p = cPluginManager::First(); p; p = cPluginManager::Next(p)) {
-    if (!p->MainMenuEntry())
-      continue;
+  // 2. Restliche Plugins anhängen (VDR 2.7.x Iterator)
+  for (cPlugin *p : cPluginManager::Plugins()) {
+    if (!p->MainMenuEntry()) continue;
 
     bool known = false;
     for (auto &n : PluginOrder)
@@ -38,6 +39,7 @@ cOsdMenuSortedPlugins::cOsdMenuSortedPlugins()
 
   Display();
 };
+
 
 eOSState cOsdMenuSortedPlugins::ProcessKey(eKeys Key)
 {
