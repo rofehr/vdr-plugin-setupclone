@@ -12,7 +12,7 @@ public:
   const char *Version(void) { return "1.0"; }
   const char *Description(void) { return "Plugin menu setup (setup clone)"; }
 
-  const char *MainMenuEntry(void) { return tr("Plugins"); }
+  const char *MainMenuEntry(void) { return tr("Pluginsort"); }
   cOsdObject *MainMenuAction(void);
 
   cMenuSetupPage *SetupMenu(void);
