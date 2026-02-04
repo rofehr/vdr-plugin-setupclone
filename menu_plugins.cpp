@@ -5,15 +5,6 @@
 #include <vdr/menuitems.h>
 
 
-class cPluginMenuItem : public cOsdItem {
-public:
-  cPlugin *plugin;
-
-  cPluginMenuItem(cPlugin *Plugin)
-  : cOsdItem(Plugin->MainMenuEntry()), plugin(Plugin) {}
-};
-
-
 cOsdMenuSortedPlugins::cOsdMenuSortedPlugins()
 : cOsdMenu(tr("Plugin-Sort"))
 {
