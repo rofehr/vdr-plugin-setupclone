@@ -45,9 +45,12 @@ eOSState cOsdMenuSetupPlugins::ProcessKey(eKeys k)
 
 void cOsdMenuSetupPlugins::Store(void)
 {
-  cString s;
-  for (size_t i = 0; i < PluginOrder.size(); ++i)
-    s = i ? cString::sprintf("%s,%s", *s, PluginOrder[i].c_str())
-          : PluginOrder[i].c_str();
-  SetupStore("Order", *s);
+    cString s;
+
+    for (size_t i = 0; i < PluginOrder.size(); ++i)
+        s = i ? cString::sprintf("%s,%s", *s, PluginOrder[i].c_str())
+              : cString(PluginOrder[i].c_str());
+
+    SetupStore("Order", *s);
 }
+
