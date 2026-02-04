@@ -20,10 +20,17 @@ bool cPluginSetupClone::SetupParse(const char *Name, const char *Value)
 {
   if (!strcmp(Name, "Order")) {
     PluginOrder.clear();
-    cString s = Value;
-    char *p;
-    while ((p = strsep(&s, ",")))
-      PluginOrder.emplace_back(p);
+
+    char *tmp = strdup(Value);
+    char *p = tmp;
+    char *token;
+
+    while ((token = strsep(&p, ",")) != nullptr) {
+      if (*token)
+        PluginOrder.emplace_back(token);
+    }
+
+    free(tmp);
     return true;
   }
   return false;
