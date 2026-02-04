@@ -29,18 +29,22 @@ cOsdMenuSortedPlugins::cOsdMenuSortedPlugins()
 
 eOSState cOsdMenuSortedPlugins::ProcessKey(eKeys Key)
 {
-  if (Key == kOk) {
-    cPluginMenuItem *item =
-      dynamic_cast<cPluginMenuItem *>(Get(Current()));
-
-    if (item && item->plugin) {
-      cOsdObject *o = item->plugin->MainMenuAction();
-      if (o)
-        return AddSubMenu(o);
+    if (Key == kOk) {
+        cPluginMenuItem *item =
+            dynamic_cast<cPluginMenuItem*>(Get(Current()));
+        if (item && item->plugin) {
+            cOsdObject *o = item->plugin->MainMenuAction();
+            if (o) {
+                cOsdMenu *menu = dynamic_cast<cOsdMenu*>(o);
+                if (menu)
+                    return AddSubMenu(menu);
+                else
+                    delete o; // Plugin liefert kein Menü, sauber löschen
+            }
+        }
+        return osContinue;
     }
-    return osContinue;
-  }
 
-  return cOsdMenu::ProcessKey(Key);
+    return cOsdMenu::ProcessKey(Key);
 };
 
