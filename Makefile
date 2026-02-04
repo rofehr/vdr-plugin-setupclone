@@ -107,7 +107,7 @@ install-i18n: $(I18Nmsgs)
 ### Targets:
 
 $(SOFILE): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) -lgobject-2.0 -lglib-2.0 -lgstvideo-1.0 -lXcomposite -lcairo -lXfixes -lgstreamer-1.0 -lgio-2.0 -lX11 -lgstapp-1.0 -lXpm -lxcb -lxcb-shm -lXext -lXrender -o $@
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) -o $@
 
 install-lib: $(SOFILE)
 	install -D $^ $(DESTDIR)$(LIBDIR)/$^.$(APIVERSION)
