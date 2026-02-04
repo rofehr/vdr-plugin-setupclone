@@ -24,10 +24,15 @@ void cOsdMenuSetupPlugins::Refresh(void)
 
 void cOsdMenuSetupPlugins::Move(int f, int t)
 {
-  if (t < 0 || t >= (int)PluginOrder.size()) return;
-  std::swap(PluginOrder[f], PluginOrder[t]);
-  SetCurrent(t);
-  Refresh();
+    if (t < 0 || t >= (int)PluginOrder.size()) return;
+
+    std::swap(PluginOrder[f], PluginOrder[t]);
+
+    cOsdItem *item = Get(t);   // von Index auf Item
+    if (item)
+        SetCurrent(item);
+
+    Refresh();
 }
 
 eOSState cOsdMenuSetupPlugins::ProcessKey(eKeys k)
