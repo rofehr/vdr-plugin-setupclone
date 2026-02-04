@@ -2,12 +2,23 @@ PLUGIN = setupclone
 
 OBJS = setupclone.o menu_plugins.o menu_setup.o
 
-VDRDIR ?= /usr/include/vdr
 LIBDIR ?= /usr/lib/vdr/plugins
+
+PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell PKG_CONFIG_PATH="$$PKG_CONFIG_PATH:../../.." pkg-config --variable=$(1) vdr))
+LIBDIR = $(call PKGCFG,libdir)
+LOCDIR = $(call PKGCFG,locdir)
+PLGCFG = $(call PKGCFG,plgcfg)
+CFGDIR = $(call PKGCFG,configdir)
+
+APIVERSION = $(call PKGCFG,apiversion)
+
+### Allow user defined options to overwrite defaults:
+
+-include $(PLGCFG)
+
 
 CXX = g++
 CXXFLAGS := -fPIC -Wall -Wextra
-INCLUDES += -I$(VDRDIR)
 
 all: libvdr-$(PLUGIN).so
 
