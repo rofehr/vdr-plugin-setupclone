@@ -6,6 +6,7 @@
 class cOsdMenuSortedPlugins : public cOsdMenu {
 public:
   cOsdMenuSortedPlugins();
+  eOSState ProcessKey(eKeys Key) override;
 };
 
 #endif
