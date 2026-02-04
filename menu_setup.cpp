@@ -5,9 +5,9 @@
 cOsdMenuSetupPlugins::cOsdMenuSetupPlugins()
 {
   if (PluginOrder.empty()) {
-    for (cPlugin *p = cPluginManager::First(); p; p = cPluginManager::Next(p)) {
-      if (p->MainMenuEntry())
-        PluginOrder.emplace_back(p->Name());
+//    for (cPlugin *p = cPluginManager::First(); p; p = cPluginManager::Next(p)) {
+//      if (p->MainMenuEntry())
+//        PluginOrder.emplace_back(p->Name());
     }
   }
   Refresh();
