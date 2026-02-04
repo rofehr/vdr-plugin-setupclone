@@ -15,7 +15,7 @@ public:
 
 
 cOsdMenuSortedPlugins::cOsdMenuSortedPlugins()
-: cOsdMenu(tr("Plugins"))
+: cOsdMenu(tr("Plugin-Sort"))
 {
   for (const auto &name : PluginOrder) {
     cPlugin *p = cPluginManager::GetPlugin(name.c_str());
