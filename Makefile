@@ -62,7 +62,7 @@ OBJS = $(PLUGIN).o menu_plugins.o menu_setup.o
 
 ### The main target:
 
-all: $(SOFILE) i18n
+all: $(SOFILE) 
 
 ### Implicit rules:
 
