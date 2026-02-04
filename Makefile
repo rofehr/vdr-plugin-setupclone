@@ -5,6 +5,7 @@ OBJS = setupclone.o menu_plugins.o menu_setup.o
 VDRDIR ?= /usr/include/vdr
 LIBDIR ?= /usr/lib/vdr/plugins
 
+CXX = g++
 CXXFLAGS += -fPIC -Wall -Wextra
 INCLUDES += -I$(VDRDIR)
 
