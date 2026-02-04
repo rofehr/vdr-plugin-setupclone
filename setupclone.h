@@ -2,8 +2,8 @@
 #define __SETUPCLONE_H
 
 #include <vdr/plugin.h>
-#include <vector.h>
-#include <string.h>
+#include <vector>
+#include <string>
 
 extern std::vector<std::string> PluginOrder;
 
