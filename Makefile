@@ -6,7 +6,7 @@ VDRDIR ?= /usr/include/vdr
 LIBDIR ?= /usr/lib/vdr/plugins
 
 CXX = g++
-CXXFLAGS += -fPIC -Wall -Wextra
+CXXFLAGS := -fPIC -Wall -Wextra
 INCLUDES += -I$(VDRDIR)
 
 all: libvdr-$(PLUGIN).so
